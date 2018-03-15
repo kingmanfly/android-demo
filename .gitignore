@@ -8,12 +8,9 @@
 /captures
 .externalNativeBuild
 /*.bat
-/*.gradle
 /*.properties
 /gradle
 /.idea
 /gradlew
 /gradlew.bat
 /gradle.properties
-/app/build.gradle
-/app/proguard-rules.pro
