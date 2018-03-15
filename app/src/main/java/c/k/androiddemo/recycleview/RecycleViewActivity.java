@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
 
 import c.k.androiddemo.R;
 
@@ -34,7 +36,7 @@ public class RecycleViewActivity extends Activity{
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_recycleview );
         initView();
-        initData();
+        initEvent();
     }
 
     private void initView() {
@@ -53,7 +55,25 @@ public class RecycleViewActivity extends Activity{
         recyclerView.setAdapter(recyclerGridViewAdapter);
     }
 
-    private void initData() {
+    private void initEvent() {
+        onRecyclerItemClickListener();
+    }
 
+    private void onRecyclerItemClickListener() {
+        recyclerGridViewAdapter.setmOnRecyclerViewItemListener(new OnRecyclerViewItemListener() {
+            @Override
+            public void onItemClickListener(View view, int position) {
+                Toast.makeText(RecycleViewActivity.this,
+                        "onClick:" + position,
+                        Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onItemLongClickListener(View view, int position) {
+                Toast.makeText(RecycleViewActivity.this,
+                        "onLongClick:" + position,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
