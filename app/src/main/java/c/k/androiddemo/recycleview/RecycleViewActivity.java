@@ -27,23 +27,33 @@ public class RecycleViewActivity extends Activity{
             "http://106.14.176.248/kingman/lottery/danfan.png"
     };
 
-    private Integer[] data2 = {
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher
-    };
     private RecyclerGridViewAdapter recyclerGridViewAdapter;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_recycleview );
+        initView();
+        initData();
+    }
+
+    private void initView() {
         recyclerView = findViewById( R.id.fragment_recyclerview );
         GridLayoutManager mgr = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mgr);
+
+        int spanCount = 2;//跟布局里面的spanCount属性是一致的
+        int spacing = 2;//每一个矩形的间距
+        boolean includeEdge = true;//如果设置成false那边缘地带就没有间距
+        //设置每个item间距
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(spanCount, spacing, includeEdge));
+
         recyclerGridViewAdapter = new RecyclerGridViewAdapter(
                 this, data);
         recyclerView.setAdapter(recyclerGridViewAdapter);
+    }
+
+    private void initData() {
+
     }
 }
